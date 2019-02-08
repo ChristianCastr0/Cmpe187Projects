@@ -29,8 +29,7 @@ public class TriangleTester {
 	 */
 	public static boolean validTriangle(Double side1, Double side2, Double side3) {
 		//Not a triangle if side length<=0 or sum of two sides are less than length of third side
-		if(side1+side2<side3||side2+side3<side1||side1+side3<side2) {
-			System.out.println("a");
+		if(side1+side2<side3||side2+side3<side1||side1+side3<side2||side1.compareTo(0.0)<=0||side2.compareTo(0.0)<=0||side3.compareTo(0.0)<=0) {
 			return false;
 		}
 		return true;
@@ -52,7 +51,7 @@ public class TriangleTester {
 				(side1.compareTo(side3)==0&&side1.compareTo(side2)!=0)||(side2.compareTo(side3)==0&&side2.compareTo(side1)!=0))))	//Valid triangle and exactly 2 sides are equal
 			return "Isosceles Triangle";
 		else
-			return "Not a triangle";
+			return "Not a Triangle";
 	}
 	
 	public static void main(String[] args) {
