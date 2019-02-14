@@ -105,16 +105,20 @@ public class LinkedList {
 	
 	/**
 	 * displays all the node values present in the linked list
+	 * @return String containing values of Linked List in order
 	 */
-	public void display() {
+	public String contents() {
 		Node current=head;
 		boolean end=false;
-		while(end!=true) {
-			System.out.print(current.value+" ");
+		String list="";
+
+		//While not at end of List add value to string
+		while(end!=true) {	
+			list+=(current.value+" ");
 			current=current.next;
 			if(current.value==head.value)
 				end=true;
 		}
-		System.out.println("");
+		return list;
 	}
 }
