@@ -1,13 +1,22 @@
+
 /**
  * Circular doubly linked list
  * @author Christian Castro
  *@version 1.0	9/19/2018
  */
 public class LinkedList {
-	Node head;
+	private Node head;
 	
 	public LinkedList() {
 		head=null;
+	}
+	
+	/**
+	 * Method to get head of linked list
+	 * @return Node
+	 */
+	public Node getHead() {
+		return head;
 	}
 	
 	/**
@@ -111,6 +120,10 @@ public class LinkedList {
 		Node current=head;
 		boolean end=false;
 		String list="";
+		
+		//if List is empty
+		if(current==null)
+			end=true;
 
 		//While not at end of List add value to string
 		while(end!=true) {	
