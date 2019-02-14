@@ -104,42 +104,6 @@ public class LinkedList {
 	}
 	
 	/**
-	 * Traverses the linked list by k and removes the corresponding number, repeats
-	 * process until one node is left
-	 * @param numPrisoners Defines number of nodes to be created in the linked list
-	 * @param k number by which the prisoners are counted off
-	 * @return Number of winning position/0 if invalid number of prisoners entered
-	 * Precondition: Linked list has at least one element
-	 * Postcondition: Linked list is narrowed down to one node 
-	 */
-	public int execution(int numPrisoners, int k) {
-		LinkedList prisoners=new LinkedList();
-		
-		if(numPrisoners>0) {
-			for(int i=1;i<=numPrisoners;i++) {
-				Node node=new Node(i);
-				prisoners.append(node);
-			}
-			
-			Node current=prisoners.head;
-			
-			if(prisoners.length()>1) {
-				while(prisoners.length()>1) {
-					prisoners.display();
-					for(int i=0;i<k;i++) {
-						current=current.next;
-					}
-					prisoners.delete(current.value);
-					//start count from next prisoner in line
-					current=current.next;
-				}
-			}
-			return prisoners.head.value;
-		}
-		return 0;
-	}
-	
-	/**
 	 * displays all the node values present in the linked list
 	 */
 	public void display() {
