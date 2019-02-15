@@ -1,8 +1,8 @@
 
 /**
- * Circular doubly linked list
+ * Linked list
  * @author Christian Castro
- *@version 1.0	9/19/2018
+ * @version 1.0	2/17/2019
  */
 public class LinkedList {
 	private Node head;
@@ -23,80 +23,80 @@ public class LinkedList {
 	 * Adds node to the end of the linked list
 	 * @param newNode new node to be added
 	 * Precondition: None
-	 * Postcondition: Node is added to the linked list and all references are updated
+	 * Postcondition: Node is added to the linked list and references are updated
 	 */
 	public void append(Node newNode) {
-		Node current=head;
-
 		//if empty
-		if(current==null) {
+		if(head==null) {
 			head=newNode;
-			head.next=head;
-			head.prev=head;
 		}
 		else {
+			Node current=head;
+			Node next=current.next;
+	
 			//iterate through linked list to find end
-			while(current.next.value!=head.value)
-				current=current.next;
-			
+			while(next!=null) {
+				current=next;
+				next=current.next;
+			}
+			//Update node variables
 			current.next=newNode;
-			newNode.prev=current;
-			newNode.next=head;
-			head.prev=newNode;
-		}	
+		}
 	}
 	
 	/**
 	 * deletes node of a given value from linked list
 	 * @param value value of node
+	 * @return String Status of deletion
 	 * Precondition: Node with given value must be present within the linked list
 	 * Postcondition: Node will be deleted from link list and all remaining references will be updated
 	 */
-	public void delete(int value) {
+	public String delete(int value) {
 		Node current=head;
-		Node previous=current.prev;
 		Node next=current.next;
-		//One node
-		if(head.value==value&&head.next.value==head.value) {
+		
+		//Empty List
+		if(head==null) {
+			return "List is already empty.";
+		}
+		//One node in list
+		else if(next==null&&value==head.value) {
 			head=null;
 		}
-		//Delete head
-		else if(head.value==value) {
-			head=next;
+		//Head is target
+		else if(value==head.value&&next!=null) {
 			head.next=next.next;
-			head.prev=current.prev;
-			previous.next=head;
+			head=next;
 		}
 		else {
+			Node previous=null;
+			
 			//iterate through list for given value
 			while(current.value!=value) {
-				//Gone through whole list and not found
-				if(current.next.value==head.value) {
-					System.out.println("Node is not present in the list.");
-					return;
+				if(current.next==null) {
+					return "Node is not present in the list.";
 				}
 				//Go to next number
-				current=current.next;
-				previous=current.prev;
-				next=current.next;
+				previous=current;
+				current=next;
+				next=next.next;
 			}
-			previous.next=current.next;
-			next.prev=previous;
+			//Update node variables
+			previous.next=next;
 		}
+		return "Node with value of "+value+" was deleted";
 	}
 	
 	/**
-	 * Calculates the length of the linked list
-	 * @return count number of nodes in the linked list
+	 * Calculates length of list
+	 * @return number of nodes in the linked list
 	 */
 	public int length() {
-		Node current=head;
 		int count=0;
-		boolean end=false;
-		while(end!=true&&head!=null) {
-			count+=1;
-			if(current.next.value==head.value)
-				end=true;
+		Node current=head;
+		
+		while(current!=null) {
+			count++;
 			current=current.next;
 		}
 		return count;
@@ -118,19 +118,19 @@ public class LinkedList {
 	 */
 	public String contents() {
 		Node current=head;
-		boolean end=false;
 		String list="";
 		
 		//if List is empty
-		if(current==null)
-			end=true;
-
-		//While not at end of List add value to string
-		while(end!=true) {	
-			list+=(current.value+" ");
-			current=current.next;
-			if(current.value==head.value)
-				end=true;
+		if(current==null) {
+			return "Empty";
+		}
+		//Add values in list to string
+		else {
+			list+=current.value;
+			while(current.next!=null) {	
+				list+=(" "+current.next.value);
+				current=current.next;
+			}
 		}
 		return list;
 	}
