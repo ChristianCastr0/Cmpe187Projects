@@ -53,14 +53,14 @@ public class LinkedList {
 	 */
 	public String delete(int value) {
 		Node current=head;
-		Node next=current.next;
-		
 		//Empty List
 		if(head==null) {
 			return "List is already empty.";
 		}
+		
+		Node next=current.next;
 		//One node in list
-		else if(next==null&&value==head.value) {
+		if(next==null&&value==head.value) {
 			head=null;
 		}
 		//Head is target
