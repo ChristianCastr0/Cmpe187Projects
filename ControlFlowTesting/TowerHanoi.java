@@ -72,8 +72,22 @@ public class TowerHanoi {
 		
 		//Take user input for the number of disks they want to use for the game 
 		Scanner scan = new Scanner(System.in);
-		System.out.print("Enter number of disk for tower: ");
-		int disks= scan.nextInt();
+		int disks = 0;
+		//Ensure that a positive numeric value is entered 	
+		while(true) {
+			System.out.print("Enter number of disk for tower: ");
+			try {
+				disks= Integer.parseInt(scan.nextLine());
+				if(disks>0 && disks<=15) {	//Due to excessive runtimes limit range of disks
+					break;
+				}
+				else
+					System.out.println("Enter a value greater than 0 and less than or equal to 15");
+			}catch(NumberFormatException e){	//Handle for a non numeric input
+				System.out.println("Error! Enter a valid integer.");
+				
+			}	
+		}
 		
 		//Add disks to first rod
 		for(int i=1;i<=disks;i++) {
