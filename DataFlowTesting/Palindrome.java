@@ -12,7 +12,7 @@ public class Palindrome {
 	 * @return boolean true or false
 	 */
 	public static boolean palindromeCheck(String s) {
-		s=s.toLowerCase().replaceAll("\\s", "");	//Remove all spaces from string and make all lettes lower case
+		s=s.toLowerCase().replaceAll("[^A-Za-z]+", "");	//Remove all spaces from string and make all lettes lower case
 		int len = s.length();	//Length of string or number of characters
 		
 		//Compare characters one by one from beginning to end and end to beginning
