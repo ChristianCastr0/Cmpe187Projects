@@ -34,7 +34,9 @@ public class Palindrome {
 		while(!input.equals("q")) {
 			System.out.print("Enter a word/phrase (q to quit): ");
 			input=scan.nextLine();
-			if(palindromeCheck(input)) {
+			if(input.equals("q"))
+				System.out.println("Bye");
+			else if(palindromeCheck(input)) {
 				System.out.println("This is a palindrome\nThe phrase is "+input.length()+" characters long.\n");
 			}
 			else
